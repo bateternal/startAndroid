@@ -49,9 +49,16 @@ public class DrawTest extends View {
         currX = event.getX();
         currY = event.getY();
         invalidate();
+        if(event.getAction()==MotionEvent.ACTION_MOVE){
+            currX = event.getX();
+            currY = event.getY();
+            invalidate();
+        }
         Log.d(TAG, "View's On touch is called! X= "+currX + ", Y= "+currY);
         return super.onTouchEvent(event);
     }
+
+
 
     @Override
     protected void onDraw(final Canvas canvas) {
