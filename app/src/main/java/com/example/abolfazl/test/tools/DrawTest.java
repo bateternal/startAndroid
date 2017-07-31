@@ -60,19 +60,13 @@ public class DrawTest extends View {
         paint.setStyle(Paint.Style.FILL);
         paint.setColor(Color.WHITE);
 
+
         //Custom View
-        rectangle.getPaint().setColor(Color.GRAY);
-        rectangle.getPaint().setStyle(Paint.Style.FILL_AND_STROKE);
-        rectangle.getPaint().setStrokeWidth(3);
-        gray.set((int)(50+currX), (int)(30+currY), (int)(200+currX), (int)(150+currY));
-        rectangle.setBounds(gray);
-        gray = rectangle.getBounds();
-        rectangle.draw(canvas);
 
         rectangle.getPaint().setColor(Color.BLUE);
         rectangle.getPaint().setStyle(Paint.Style.FILL_AND_STROKE);
         rectangle.getPaint().setStrokeWidth(3);
-        blue.set((int)(200+currX), (int)(200+currY), (int)(400+currX), (int)(350+currY));
+        blue.set((int)(currX)-50, (int)(currY)-50, (int)(currX)+50, (int)(currY)+50);
         rectangle.setBounds(blue);
         blue = rectangle.getBounds();
         rectangle.draw(canvas);
