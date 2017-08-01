@@ -25,13 +25,31 @@ public class MainActivity extends Activity {
 
 
     DrawTest v;
+    int ab ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         v = new DrawTest(this);
+        v.invalidate();
+        ab = 0;
+
+        v.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if(motionEvent.getActionMasked() == MotionEvent.ACTION_MOVE || motionEvent.getActionMasked() == MotionEvent.ACTION_DOWN || motionEvent.getActionMasked() == MotionEvent.ACTION_UP ){
+                    float x = motionEvent.getX();
+                    float y = motionEvent.getY();
+                    v.setX(x);
+                    v.setY(y);
+                    v.invalidate();
+                }
+                return true;
+            }
+        });
         setContentView(v);
+
 
 
 

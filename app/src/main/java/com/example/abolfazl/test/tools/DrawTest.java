@@ -24,9 +24,22 @@ public class DrawTest extends View {
     private Paint paint;
     private float currX, currY;
     private Rect blue, gray;
+    private float ax;
+    private float ay;
+    private float cx;
+    private float cy;
+    private float rcir;
+    private float cax;
+    private float cay;
 
     public DrawTest(Context context) {
         super(context);
+
+        ax = 1;
+        ay = 1;
+        cx = 200;
+        cy = 200;
+
 
         currX = 1;
         currY = 1;
@@ -35,8 +48,10 @@ public class DrawTest extends View {
         blue = new Rect(200,200,400,350);
 
         paint = new Paint();
+
         rectangle = new ShapeDrawable(new RectShape());
     }
+
 
     @Override
     public boolean isFocused() {
@@ -49,11 +64,7 @@ public class DrawTest extends View {
         currX = event.getX();
         currY = event.getY();
         invalidate();
-        if(event.getAction()==MotionEvent.ACTION_MOVE){
-            currX = event.getX();
-            currY = event.getY();
-            invalidate();
-        }
+
         Log.d(TAG, "View's On touch is called! X= "+currX + ", Y= "+currY);
         return super.onTouchEvent(event);
     }
@@ -63,9 +74,22 @@ public class DrawTest extends View {
     @Override
     protected void onDraw(final Canvas canvas) {
         super.onDraw(canvas);
+        cax = canvas.getWidth();
+        cay = canvas.getHeight();
+        for (int i = 0; i < 100; i++) {
+            if (cx == (canvas.getWidth() * 15) / 16 || cx == 0) {
+                ax = ax * (-1);
+            }
+            if (cy == (canvas.getHeight() * 15) / 16 || cy == 0) {
+                ay = ay * (-1);
+            }
+            cx = cx + ax;
+            cy = cy + ay;
+        }
+        rcir = canvas.getHeight()/16;
 
         paint.setStyle(Paint.Style.FILL);
-        paint.setColor(Color.WHITE);
+        paint.setColor(Color.BLACK);
 
 
         //Custom View
@@ -77,7 +101,15 @@ public class DrawTest extends View {
         rectangle.setBounds(blue);
         blue = rectangle.getBounds();
         rectangle.draw(canvas);
+        canvas.drawCircle(cx,cy,rcir,paint);
+    }
 
+    public void setX(float x){
+        this.currX = x;
+    }
+
+    public void setY(float y){
+        this.currY = y;
     }
 
 }
