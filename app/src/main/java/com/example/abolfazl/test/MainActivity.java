@@ -38,12 +38,16 @@ public class MainActivity extends Activity {
         v.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-                if(motionEvent.getActionMasked() == MotionEvent.ACTION_MOVE || motionEvent.getActionMasked() == MotionEvent.ACTION_DOWN || motionEvent.getActionMasked() == MotionEvent.ACTION_UP ){
+                if(motionEvent.getY()>v.getY()-50 && motionEvent.getY()<v.getY()+50 ){
+                if(motionEvent.getActionMasked() == MotionEvent.ACTION_MOVE || motionEvent.getActionMasked() == MotionEvent.ACTION_DOWN || motionEvent.getActionMasked() == MotionEvent.ACTION_UP ) {
                     float x = motionEvent.getX();
                     float y = motionEvent.getY();
                     v.setX(x);
                     v.setY(y);
                     v.invalidate();
+                    v.setSpeed();
+                }
+
                 }
                 return true;
             }
