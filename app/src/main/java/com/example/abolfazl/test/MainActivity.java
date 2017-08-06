@@ -31,7 +31,7 @@ public class MainActivity extends Activity {
                 v.setx0();
                 if(v.getPage() == 1){
                     if(motionEvent.getX() > v.getwidth() && motionEvent.getX() < 2*v.getwidth()){
-                        if(motionEvent.getY() > v.getSize() && motionEvent.getY() < 2*v.getSize()){git
+                        if(motionEvent.getY() > v.getSize() && motionEvent.getY() < 2*v.getSize()){
                             v.changePage(2);
                         }
                     }
