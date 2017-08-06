@@ -1,21 +1,11 @@
 package com.example.abolfazl.test;
 
 import android.app.Activity;
-import android.content.Context;
-import android.graphics.Canvas;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.view.GestureDetectorCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.util.AttributeSet;
-import android.view.GestureDetector;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
+
 
 import com.example.abolfazl.test.tools.DrawTest;
 
@@ -34,20 +24,24 @@ public class MainActivity extends Activity {
         v = new DrawTest(this);
         v.invalidate();
         ab = 0;
-
+        v.setBackground(getResources().getDrawable(R.drawable.a));
         v.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-                if(motionEvent.getY()>v.getY()-50 && motionEvent.getY()<v.getY()+50 ){
-                if(motionEvent.getActionMasked() == MotionEvent.ACTION_MOVE || motionEvent.getActionMasked() == MotionEvent.ACTION_DOWN || motionEvent.getActionMasked() == MotionEvent.ACTION_UP ) {
-                    float x = motionEvent.getX();
-                    float y = motionEvent.getY();
-                    v.setX(x);
-                    v.setY(y);
-                    v.invalidate();
-                    v.setSpeed();
+                v.setx0();
+                if(v.getPage() == 1){
+                    if(motionEvent.getX() > v.getwidth() && motionEvent.getX() < 2*v.getwidth()){
+                        if(motionEvent.getY() > v.getSize() && motionEvent.getY() < 2*v.getSize()){git
+                            v.changePage(2);
+                        }
+                    }
                 }
-
+                else if(v.getPage() == 3){
+                    if(motionEvent.getX() > v.getwidth() && motionEvent.getX() < 2*v.getwidth()){
+                        if(motionEvent.getY() > 6*v.getSize() && motionEvent.getY() < 7*v.getSize()){
+                            v.changePage(1);
+                        }
+                    }
                 }
                 return true;
             }
